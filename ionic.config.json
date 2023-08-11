@@ -1,0 +1,8 @@
+{
+  "name": "playground",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "903cd252"
+}

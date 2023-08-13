@@ -9,9 +9,33 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Tab One</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ng-container>
+    <ion-button (click)="onShowActionSheet()" expand="block" fill="solid" shape="round">
+      Click me
+    </ion-button>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+
+    <ion-button (click)="onShowAlert()" expand="block" fill="solid" shape="round">
+      Show Alert
+    </ion-button>
+    <ion-button (click)="onShowConfirm()" expand="block" fill="solid" shape="round">
+      Show Confirm
+    </ion-button>
+    <ion-button (click)="onShowPrompt()" expand="block" fill="solid" shape="round">
+      Show Prompt
+    </ion-button>
+
+
+    <ion-button (click)="onSetPreferences()" expand="block" fill="solid" shape="round">
+      Set Preferences
+    </ion-button>
+
+    <ion-button (click)="onGetPreferences()" expand="block" fill="solid" shape="round">
+      Get Preferences
+    </ion-button>
+  </ng-container>
+
 </ion-content>

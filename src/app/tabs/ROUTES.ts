@@ -1,7 +1,22 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthComponent } from '../auth.component';
+import { LoginComponent } from '../login.component';
+import { SignUpComponent } from '../signup.compnent';
 
 export const routes: Routes = [
+  {
+    path:'auth',
+    component:AuthComponent,
+  },
+  {
+    path:'auth/login',
+    component:LoginComponent
+  },
+  {
+    path:'auth/signup',
+    component:SignUpComponent
+  },
   {
     path: 'tabs',
     component: TabsPage,
@@ -27,7 +42,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/auth',
     pathMatch: 'full'
   }
 ];

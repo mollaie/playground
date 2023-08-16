@@ -2,27 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { RemoteConfigService } from './remoteConfig.service';
-import { Platform } from '@ionic/angular';
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
+import { Capacitor } from '@capacitor/core';
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.scss'],
     standalone: true,
-    imports: [IonicModule],
+    imports: [IonicModule,
+      
+    ],
 })
 export class AppComponent implements OnInit{
-  constructor(private remoteConfig:RemoteConfigService,private readonly platform: Platform) {
-    this.initializeFirebase();
+  constructor(private remoteConfig:RemoteConfigService) {
+    
   }
 
   async ngOnInit() {
+    
 
-    await this.remoteConfig.fetchConfig();
+    if(Capacitor.isNativePlatform()){
+      await this.initializeFirebase();
+      await this.remoteConfig.fetchConfig();
+  
+      await this.remoteConfig.active();
 
-    await this.remoteConfig.active();
-
+    }
+    
     await SplashScreen.show({
       autoHide: false,
     });
@@ -32,9 +39,6 @@ export class AppComponent implements OnInit{
   }
 
   public async initializeFirebase(): Promise<void> {
-    if (this.platform.is('capacitor')) {
-      return;
-    }
     initializeApp(environment.firebase);
   }
 }

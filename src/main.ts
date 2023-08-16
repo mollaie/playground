@@ -7,8 +7,10 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { IonicRouteStrategy, IonicModule } from '@ionic/angular';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import { routes } from './app/tabs/ROUTES';
-import { GlobalErrorHandlerService } from './app/global-error-handler.service';
 
+import { GlobalErrorHandlerService } from './app/global-error-handler.service';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 
 if (environment.production) {
@@ -26,7 +28,12 @@ bootstrapApplication(AppComponent, {
     },
     importProvidersFrom(
       IonicModule.forRoot(),
-    )
+    ),
+    importProvidersFrom(
+      provideFirebaseApp(() => initializeApp(environment.firebase)),
+    ),
+    importProvidersFrom(
+      provideFirestore(() => getFirestore())),
   ]
 })
   .catch(err => console.log(err));

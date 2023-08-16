@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EnvironmentInjector } from '@angular/core';
+import { Component, EnvironmentInjector, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { FirebaseAnalytics } from '@capacitor-firebase/analytics';
+import { IonicModule, Platform } from '@ionic/angular';
 
 @Component({
     selector: 'app-tabs',
@@ -10,8 +11,16 @@ import { IonicModule } from '@ionic/angular';
     standalone: true,
     imports: [IonicModule,CommonModule, FormsModule]
 })
-export class TabsPage {
+export class TabsPage implements OnInit{
 
-  constructor() {}
+  constructor(private readonly platform: Platform) {}
+  async ngOnInit() {
+    // if (this.platform.is('capacitor')) {
+    //   return;
+    // }
+    // await FirebaseAnalytics.setEnabled({
+    //   enabled: true,
+    // });
+  }
 
 }

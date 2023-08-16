@@ -1,5 +1,5 @@
 import { Component, OnInit, effect } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, Platform } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet';
@@ -8,6 +8,7 @@ import { Toast } from '@capacitor/toast';
 import { Dialog } from '@capacitor/dialog';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { RemoteConfigService } from '../remoteConfig.service';
+import { FirebaseAnalytics } from '@capacitor-firebase/analytics';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -16,7 +17,7 @@ import { RemoteConfigService } from '../remoteConfig.service';
   imports: [
     IonicModule,
     CommonModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     RemoteConfigService
@@ -25,16 +26,40 @@ import { RemoteConfigService } from '../remoteConfig.service';
 export class Tab1Page implements OnInit {
   appTitle: string = "";
   appVersion: number = 0;
-  constructor(public remoteConfig: RemoteConfigService) {
+  public appInstanceId = '';
+  constructor(public remoteConfig: RemoteConfigService,private readonly platform: Platform) {
 
 
-    effect(() => {
-      this.appTitle = this.remoteConfig.appSetting().title;
-      this.appVersion = this.remoteConfig.appSetting().version;
-    })
+    // effect(() => {
+    //   this.appTitle = this.remoteConfig.appSetting().title;
+    //   this.appVersion = this.remoteConfig.appSetting().version;
+    // })
   }
   async ngOnInit() {
+    if (this.platform.is('desktop')) {
+      return;
+    }
+    console.log(this.platform)
     await this.fetchConfig();
+    FirebaseAnalytics.getAppInstanceId().then((result) => {
+      this.appInstanceId = result.appInstanceId || '';
+    });
+
+   await FirebaseAnalytics.setCurrentScreen({
+      screenName: 'Tab Page',
+      screenClassOverride: 'Tab1Page',
+    });
+
+  }
+
+  public ionViewDidEnter(): void {
+    if (this.platform.is('desktop')) {
+      return;
+    }
+    FirebaseAnalytics.setCurrentScreen({
+      screenName: 'Tab Page',
+      screenClassOverride: 'Tab1Page',
+    });
   }
 
   async onGetPreferences() {

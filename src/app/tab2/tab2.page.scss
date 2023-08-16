@@ -1,0 +1,110 @@
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  
+    border-radius: 4px;
+  
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+  }
+  
+  .skeleton-image {
+    width: 100%;
+    height: 150px;
+  }
+  
+  .skeleton-title {
+    width: 70%;
+    height: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .skeleton-description {
+    width: 90%;
+    height: 15px;
+    margin-bottom: 10px;
+  }
+
+
+  .card-image {
+    width: 400px;
+    height: 200px;
+    max-width: 100%; 
+    object-fit: cover; 
+    margin: auto;
+    display: block; // To ensure margin auto works for centering the image
+  }
+  
+  // Media Query for larger screens
+  @media screen and (min-width: 768px) {
+    .card-image {
+      width: 440px; // or adjust as you see fit
+      height: 220px; // or adjust as you see fit
+    }
+  }
+  
+
+  .card-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-actions {
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+  
+  .card-actions {
+    ion-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ion-icon {
+        font-size: 24px;  // Adjust this value to your liking
+      }
+
+      .ripple-container {
+        position: relative;
+        display: inline-block;  // ensures it takes the size of the icon
+      }
+
+    padding-bottom: 0.5rem;
+  }
+
+
+  .icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .splash {
+    position: absolute;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.3); // Red with some transparency
+    animation: splashEffect 0.5s ease-out forwards;
+  }
+  
+  @keyframes splashEffect {
+    from {
+      transform: scale(0);
+      opacity: 0.8;
+    }
+    to {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+  

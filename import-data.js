@@ -17,12 +17,13 @@ async function importData() {
     // Use batched writes for efficiency
     const batch = db.batch();
 
-    data.forEach((item, index) => {
+    data.forEach(async (item, index) => {
         const docRef = db.collection('category').doc(`category_${index + 1}`);
         batch.set(docRef, item);
-    });
+      });
+      await batch.commit();
 
-    await batch.commit();
+    //await batch.commit();
     console.log('Data successfully written to Firestore!');
 }
 

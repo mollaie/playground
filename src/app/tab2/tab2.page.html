@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Posts
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,20 +9,89 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Posts</ion-title>
     </ion-toolbar>
   </ion-header>
 
 
-  <ion-list>
-    <ion-item *ngFor="let item of collections$ | async; let index">
-      <ion-avatar slot="start">
-        <img [src]="item.imageUrl" alt="avatar" />
-      </ion-avatar>
-      <ion-label>{{ item.title }}</ion-label>
+  <ion-list *ngIf="!isloading">
+      <ion-card *ngFor="let item of items; let i = index">
+        <img [src]="item.imageUrl" alt="avatar"  class="card-image" />
+        <ion-card-header>
+          <ion-card-title>{{ item.title }}</ion-card-title>
+          <ion-card-subtitle>{{item.description}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+        <ion-row class="card-actions">
+          <ion-col size="6" >
+            <div class="icon-wrapper" (click)="toggleLike(i)">
+              <div *ngIf="showSplash[i]" class="splash"></div>
+              <ion-icon 
+                  [name]="likedMap[i] ? 'heart' : 'heart-outline'" 
+                  [color]="likedMap[i] ? 'danger' : 'medium'">
+              </ion-icon>
+          </div>
+          </ion-col>
+          <ion-col size="6">
+            <ion-icon name="chatbubble-outline" color="medium"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-card>
       
-    </ion-item>
   </ion-list>
+
+
+
+
+  <ion-list *ngIf="isloading">
+
+    <ion-card>
+      <div class="skeleton-image skeleton"></div>
+      <ion-card-content>
+        <div class="skeleton-title skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <div class="skeleton-image skeleton"></div>
+      <ion-card-content>
+        <div class="skeleton-title skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <div class="skeleton-image skeleton"></div>
+      <ion-card-content>
+        <div class="skeleton-title skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <div class="skeleton-image skeleton"></div>
+      <ion-card-content>
+        <div class="skeleton-title skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <div class="skeleton-image skeleton"></div>
+      <ion-card-content>
+        <div class="skeleton-title skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+        <div class="skeleton-description skeleton"></div>
+      </ion-card-content>
+    </ion-card>
+    
+
+  </ion-list>
+
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>

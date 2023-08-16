@@ -1,14 +1,17 @@
 const fs = require('fs');
+const Chance = require('chance');
+
+const chance = new Chance();
 
 function generateTestData() {
     const testData = [];
-    const baseUrl = "https://picsum.photos/80/80?random=";
+    const baseUrl = "https://picsum.photos/400/200?random=";
 
-    for (let i = 0; i < 2000; i++) {
+    for (let i = 20002; i < 30000; i++) {
         const randomNum = Math.floor(Math.random() * 50) + 1;
         const category = {
-            title: `Title ${i + 1}`,
-            description: `Description for title ${i + 1}`,
+            title: chance.name(),
+            description: chance.sentence(),
             imageUrl: `${baseUrl}${randomNum}`
         };
         testData.push(category);

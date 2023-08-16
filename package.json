@@ -39,6 +39,8 @@
     "@capacitor/status-bar": "5.0.6",
     "@capacitor/toast": "^5.0.6",
     "@ionic/angular": "^7.0.0",
+    "chance": "^1.1.11",
+    "faker": "^6.6.6",
     "firebase": "^10.1.0",
     "ionicons": "^7.0.0",
     "node-firestore-import-export": "^1.1.0",

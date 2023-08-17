@@ -13,6 +13,10 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 
+import { register } from 'swiper/element/bundle';
+
+register();
+
 if (environment.production) {
   enableProdMode();
 }

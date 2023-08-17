@@ -5,6 +5,8 @@ import { RemoteConfigService } from './remoteConfig.service';
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { Capacitor } from '@capacitor/core';
+
+
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',

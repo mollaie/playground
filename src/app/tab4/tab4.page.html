@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            Notifications
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Notifications</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+
+    <swiper-container slides-per-view="2" space-between="8" class="notification-container">
+        <swiper-slide>
+            <div class="notification-item">
+                <ion-label class="label-primary">All</ion-label>
+            </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div class="notification-item">
+                <ion-label class="label-secondary">Subscribers Request</ion-label>
+                <ion-badge class="badge-number">20</ion-badge>
+            </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div class="notification-item">
+                <ion-label class="label-secondary">Invitation Request</ion-label>
+                <ion-badge class="badge-number">20</ion-badge>
+            </div>
+        </swiper-slide>
+    </swiper-container>
+
+    <ion-list>
+
+        <ion-item lines="none" class="custom-item"  *ngFor="let i of [1,2,3,4,5,6] as items;let index">
+            <div class="content-wrap">
+                <div class="top-row">
+                    <img [src]="'https://picsum.photos/200/200?random='+index" class="profile-image" />
+                    <div class="text-content">
+                        <div class="name">Line doe</div>
+                        <div class="time">2w</div>
+                    </div>
+                </div>
+                <div class="bottom-row">
+                    <div class="reject-button">Reject</div>
+                    <div class="accept-button">Accept</div>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>
